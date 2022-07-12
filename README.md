@@ -1,1 +1,1 @@
-Each day, pull arXiv papers from `http://export.arxiv.org/rss/` and post them on our [Discourse server](discourse.mis.mpg.de).
+Each day, pull arXiv papers from `http://export.arxiv.org/rss/` and post them on our [Discourse server](https://discourse.mis.mpg.de).
