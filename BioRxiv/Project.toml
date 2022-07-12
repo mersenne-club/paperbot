@@ -1,0 +1,4 @@
+name = "BioRxiv"
+uuid = "bc44f90e-6cee-4413-a245-3a601305ab08"
+authors = ["Matteo Smerlak <matteo.smerlak@gmail.com>"]
+version = "0.1.0"
