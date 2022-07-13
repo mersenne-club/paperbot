@@ -19,20 +19,29 @@ end
 const CATEGORIES = Dict([cat["slug"] => cat["id"] for cat in download_categories()])
 
 function create_category(name, slug, color, parent = "test")
-    body = Dict("name" => name, "color" => color, "slug" => slug,
-    "parent_category_id" => CATEGORIES[parent])
-    HTTP.post(DISCOURSE_URL * "categories.json", HEADER, JSON.json(body))
+    
+    body = Dict(
+        "name" => name, 
+        "color" => color, 
+        "slug" => slug,
+        "parent_category_id" => CATEGORIES[parent]
+        )
+    HTTP.post(
+        DISCOURSE_URL * "categories.json", 
+        HEADER, 
+        JSON.json(body)
+        )
 end
 
 
-isletter_or_dash(c::AbstractChar) = isletter(c) || c == '-'
-function sluggify(title::AbstractString)
-    slug = replace(title, " " => "-")
-    slug = lowercase(slug)
-    slug = collect(slug)[isletter_or_dash.(collect(slug))] |> join
-    if slug[end] == '-' slug = chop(slug) end
-    return slug
-end
+# isletter_or_dash(c::AbstractChar) = isletter(c) || c == '-'
+# function sluggify(title::AbstractString)
+#     slug = replace(title, " " => "-")
+#     slug = lowercase(slug)
+#     slug = collect(slug)[isletter_or_dash.(collect(slug))] |> join
+#     if slug[end] == '-' slug = chop(slug) end
+#     return slug
+# end
 
 function post_paper(paper, category)
     
@@ -46,7 +55,11 @@ function post_paper(paper, category)
             "tags" => [replace(paper.tag, "." => "-")]
         )
 
-        response = HTTP.post(DISCOURSE_URL * "posts.json", HEADER, JSON.json(post))
+        response = HTTP.post(
+            DISCOURSE_URL * "posts.json", 
+            HEADER, 
+            JSON.json(post)
+            )
 
     else
 
@@ -60,11 +73,12 @@ function post_paper(paper, category)
             "category" => CATEGORIES[category]
         )
 
-        response = HTTP.post(DISCOURSE_URL * "posts.json", HEADER, JSON.json(post))
-
+        response = HTTP.post(
+            DISCOURSE_URL * "posts.json", 
+            HEADER, 
+            JSON.json(post)
+            )
     end
-
-    
 
 end
 
