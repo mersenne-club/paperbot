@@ -24,6 +24,12 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
+[[deps.BioRxiv]]
+deps = ["Dates", "HTTP", "JSON", "XMLDict"]
+path = "BioRxiv"
+uuid = "bc44f90e-6cee-4413-a245-3a601305ab08"
+version = "0.1.0"
+
 [[deps.Bzip2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "19a35467a82e236ff51bc17a3a44b69ef35185a2"
@@ -124,7 +130,7 @@ deps = ["Mmap"]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 
 [[deps.Discourse]]
-deps = ["HTTP", "JSON", "Plots"]
+deps = ["Dates", "HTTP", "JSON", "Plots"]
 path = "Discourse"
 uuid = "e41dce62-66ed-4ac3-9a7d-8c3e1400dc60"
 version = "0.1.0"

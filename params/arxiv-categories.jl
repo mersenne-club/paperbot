@@ -1,6 +1,6 @@
-category_slugs = ["cs", "econ", "eess", "math", "astro-ph", "cond-mat", "gr-qc", "hep-ex", "hep-lat", "hep-ph", "hep-th", "math-ph", "nlin", "nucl-ex", "nucl-th", "physics", "quant-ph", "q-bio", "q-fin", "stat"]
+arxiv_category_slugs = ["cs", "econ", "eess", "math", "astro-ph", "cond-mat", "gr-qc", "hep-ex", "hep-lat", "hep-ph", "hep-th", "math-ph", "nlin", "nucl-ex", "nucl-th", "physics", "quant-ph", "q-bio", "q-fin", "stat"]
 
-category_names = [
+arxiv_category_names = [
     "Computer Science", 
     "Economics", 
     "Electrical Engineering and Systems Science",
