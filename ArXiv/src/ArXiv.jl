@@ -25,6 +25,8 @@ end
 
 function format_paper(paper)
     link = paper["link"]
+    authors = paper["creator"]
+    abstract = paper["description"][""]
     title = format_title(paper["title"])
     tag = extract_tag(paper["title"])
     section = extract_section(tag)
@@ -33,9 +35,9 @@ function format_paper(paper)
 
     text = join(
         [
-        "<br> <span>Source: </span>" * format_link(paper["link"]), 
-        "<br> <span>Authors: </span>" * paper["creator"],
-        "<br> <br>" * format_abstract(paper["description"][""])
+        "<br> <span>Source: </span>" * format_link(link), 
+        "<br> <span>Authors: </span>" * authors,
+        "<br> <br>" * format_abstract(abstract)
     ]
     )
     return (title=title, tag = tag, text = text, section = section, link = link, update = update, id = id)

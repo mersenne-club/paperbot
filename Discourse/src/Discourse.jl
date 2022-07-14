@@ -4,6 +4,7 @@ export post_paper, create_category
 
 using HTTP
 using JSON
+using Dates
 
 const DISCOURSE_URL = "https://discourse.mis.mpg.de/"
 const HEADER = read(dirname(@__DIR__) * "/params/credentials-paperbot.json") |> String |> JSON.parse
@@ -81,5 +82,26 @@ function post_paper(paper, category)
     end
 
 end
+
+function post_report(report)
+    
+    sections = keys(report)
+    
+    post = Dict(
+            "title" => "Report for " * string(today()),
+            "raw" => join(
+                ["$section: $(report[section])" for section in sections],
+                 "\n"),
+            "category" => CATEGORIES["reports"],
+            "tags" => ["report"]
+        )
+
+    HTTP.post(
+            DISCOURSE_URL * "posts.json", 
+            HEADER, 
+            JSON.json(post)
+            )
+end
+
 
 end # module
