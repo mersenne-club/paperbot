@@ -28,12 +28,11 @@ for section in arxiv_category_slugs
         catch e
             println(e)
         end
-        sleep(.1)
     end
 
     report[section] = (fetched = n_fetched, new_submissions = n_submissions, successfully_posted = n_posted)
 end
-post_report(report)
+
 
 #### BIORXIV ####
 using BioRxiv
@@ -43,16 +42,16 @@ begin
     n_fetched = length(papers)
     n_posted = 0
     for paper in papers
-        if paper.new 
-            try
-                Discourse.post_paper(paper, paper.section)
-                n_posted += 1
-            catch e
-                println(e)
-            end
-            sleep(.1)
+        try
+            Discourse.post_paper(paper, paper.section)
+            n_posted += 1
+        catch e
+            println(e)
         end
     end
 end
+report["bioRxiv"] = (fetched = n_fetched, successfully_posted = n_posted)
 
 
+### REPORT
+post_report(report)

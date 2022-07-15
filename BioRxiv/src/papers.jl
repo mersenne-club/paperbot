@@ -2,12 +2,14 @@
 t = string(today()) 
 
 function fetch_raw()
-    i = 1
+    i = 0
     url = BIORXIV_API * t * '/' * t * '/' * string(i) * '/' * "json"
     response = HTTP.get(url)
 
     body = JSON.parse(String(response.body))
     n_papers = body["messages"][1]["count"]
+    @show n_papers
+
     papers = body["collection"]
 
     while length(papers) < n_papers
@@ -23,10 +25,11 @@ function fetch_raw()
 end
 
 function format_paper(paper)
+
     authors = paper["authors"]
     title = paper["title"]
     id = paper["doi"]
-    new = paper["type"] == "new"
+    tag = replace(paper["type"], " " => "-")
     link = "https://www.biorxiv.org/content/" * id
     abstract = paper["abstract"]
     section = replace(paper["category"], " " => "-")
@@ -40,7 +43,7 @@ function format_paper(paper)
     ]
     )
 
-    return (title=title, text = text, section = section, link = link, id = id, update = false, new = new, tag = "")
+    return (title=title, text = text, section = section, link = link, id = id, update = false, tag = tag)
 
 end
 
