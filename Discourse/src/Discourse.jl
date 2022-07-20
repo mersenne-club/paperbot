@@ -1,11 +1,11 @@
 module Discourse
 
-export post_paper, create_category, post_report
+export post_paper, create_category, post_report, CATEGORIES
 
 using HTTP
 using JSON
 
-const DISCOURSE_URL = "https://discourse.mis.mpg.de/"
+const DISCOURSE_URL = "https://discourse.mersenne.club/"#"https://discourse.mis.mpg.de/"
 const HEADER = read(dirname(@__DIR__) * "/params/credentials-paperbot.json") |> String |> JSON.parse
 
 

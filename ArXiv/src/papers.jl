@@ -34,4 +34,4 @@ function format_paper(paper)
     return (title=title, tag = tag, text = text, section = section, link = link, update = update, id = id)
 end
 
-fetch_papers(section) = map(format_paper, fetch_raw(section))
+fetch_papers(section) = map(format_paper, fetch_raw(section)) |> reverse

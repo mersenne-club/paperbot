@@ -1,20 +1,18 @@
 
-t = string(today()) 
-
-function fetch_raw()
+function fetch_raw(date = string(today()) )
     i = 0
-    url = BIORXIV_API * t * '/' * t * '/' * string(i) * '/' * "json"
+    url = BIORXIV_API * date * '/' * date * '/' * string(i) * '/' * "json"
     response = HTTP.get(url)
 
     body = JSON.parse(String(response.body))
-    n_papers = body["messages"][1]["count"]
+    n_papers = body["messages"][1]["total"]
     @show n_papers
 
     papers = body["collection"]
 
     while length(papers) < n_papers
         i += 100
-        url = BIORXIV_API * t * '/' * t * '/' * string(i) * '/' * "json"
+        url = BIORXIV_API * date * '/' * date * '/' * string(i) * '/' * "json"
         response = HTTP.get(url)
         body = JSON.parse(String(response.body))
         more_papers = body["collection"]
@@ -47,4 +45,4 @@ function format_paper(paper)
 
 end
 
-fetch_papers() = map(format_paper, fetch_raw())
+fetch_papers(date = string(today()) ) = map(format_paper, fetch_raw(date)) |> reverse

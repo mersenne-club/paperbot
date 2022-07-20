@@ -6,7 +6,7 @@ function post_paper(paper, category)
         post = Dict(
             "title" => paper.title,
             "raw" => paper.text,
-            "category" => CATEGORIES[category],
+            "category" => Discourse.CATEGORIES[category],
             "tags" => [replace(paper.tag, "." => "-")]
         )
 
@@ -25,7 +25,7 @@ function post_paper(paper, category)
         post = Dict(
             "title" => paper.title * " (CROSS-POSTING " * paper.section * ")",
             "raw" => message,
-            "category" => CATEGORIES[category]
+            "category" => Discourse.CATEGORIES[category]
         )
 
         response = HTTP.post(
