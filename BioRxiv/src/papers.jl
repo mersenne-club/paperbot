@@ -2,6 +2,7 @@
 function fetch_raw(date = string(today()) )
     i = 0
     url = BIORXIV_API * date * '/' * date * '/' * string(i) * '/' * "json"
+    @show url
     response = HTTP.get(url)
 
     body = JSON.parse(String(response.body))

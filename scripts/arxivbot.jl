@@ -8,7 +8,7 @@ for section in arxiv_category_slugs
     n_fetched = length(papers)
     n_submissions = sum([!paper.update for paper in papers])
     
-    n_posted = 0
+    local n_posted = 0
     for paper in papers
         try
             Discourse.post_paper(paper, section)

@@ -1,5 +1,7 @@
-using Discourse
+using Pkg
+Pkg.activate(".")
 
+using Discourse
 using ArXiv, BioRxiv
 
 report = Dict()
